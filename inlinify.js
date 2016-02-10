@@ -13,9 +13,9 @@ function inlinifyCSS(html, callback) {
         }
     }
     else {
-        links.each(function () {
+        links.each(function() {
             var link = $(this);
-            fs.readFile(link.attr("href"), function(error, data) {
+            fs.readFile(link.attr("href"), (error, data) => {
                 if (!error) {
                     link.remove();
                     head.append("<style>" + data.toString() + "</style>");
@@ -41,7 +41,7 @@ function inlinifyJS(html, callback) {
     else {
         scripts.each(function() {
             var script = $(this);
-            fs.readFile(script.attr("src"), function(error, data) {
+            fs.readFile(script.attr("src"), (error, data) => {
                 if (!error) {
                     script.removeAttr("src").text(data.toString());
                 }
