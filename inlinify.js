@@ -52,3 +52,6 @@ function inlinifyJS(html) {
         }
     });
 }
+
+module.exports.css = inlinifyCSS;
+module.exports.js = inlinifyJS;
