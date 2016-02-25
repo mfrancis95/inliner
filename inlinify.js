@@ -17,7 +17,7 @@ function inlinifyCSS(html) {
                 fs.readFile(link.attr("href"), (error, data) => {
                     if (!error) {
                         link.remove();
-                        head.append("<style>" + data.toString() + "</style>");
+                        head.append(`<style>${data.toString()}</style>`);
                     }
                     if (++elementsDone === elements) {
                         resolve($.html());
