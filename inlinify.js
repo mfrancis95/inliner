@@ -16,8 +16,15 @@ function inlinifyCSS(html) {
                 var link = $(this);
                 fs.readFile(link.attr("href"), (error, data) => {
                     if (!error) {
+                        data = data.toString().replace(/\.\.\//g, "");
+                        var media = link.attr("media");
                         link.remove();
-                        head.append(`<style>${data.toString().replace(/\.\.\//g, "")}</style>`);
+                        if (media) {
+                            head.append(`<style media="${media}">${data}</style>`);
+                        }
+                        else {
+                            head.append(`<style>${data}</style>`);
+                        }
                     }
                     if (++elementsDone === elements) {
                         resolve($.html());
